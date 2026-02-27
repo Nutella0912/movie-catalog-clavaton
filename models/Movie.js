@@ -32,8 +32,13 @@ const movieSchema = new mongoose.Schema ({
 			},
 			comment: {
 				type: String,
-			},
-		}
+			}
+		},
+
+		trailerUrl: {
+		  type: String,
+		  default: ""
+		},
 	]
 })
 

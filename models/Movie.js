@@ -32,14 +32,13 @@ const movieSchema = new mongoose.Schema ({
 			},
 			comment: {
 				type: String,
-			}
-		},
-
-		trailerUrl: {
+			},
+		}
+	],
+	trailerUrl: {
 		  type: String,
 		  default: ""
-		},
-	]
+		}
 })
 
 module.exports = mongoose.model('Movie', movieSchema);

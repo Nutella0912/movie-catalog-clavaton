@@ -4,20 +4,28 @@ const { errorHandler } = auth;
 
 
 module.exports.addMovie = (req, res) => {
-  const newMovie = new Movie({
+
+  const movieData = {
     title: req.body.title,
     director: req.body.director,
     year: req.body.year,
     description: req.body.description,
     genre: req.body.genre,
-  });
+    trailerUrl: req.body.trailerUrl 
+  };
 
-  return newMovie
-    .save()
-    .then((movie) => res.status(201).send(movie))
+  const newMovie = new Movie(movieData);
+
+  return newMovie.save()
+    .then(movie => {
+      console.log("Movie saved successfully:", movie); 
+      return res.status(201).send({
+        message: "Movie added successfully",
+        movie
+      });
+    })
     .catch((error) => errorHandler(error, req, res));
 };
-
 
 module.exports.getMovies = (req, res) => {
   return Movie.find({})
@@ -121,5 +129,5 @@ module.exports.getComment = (req, res) => {
       error.name === "CastError"
         ? res.status(404).send({ message: "Movie not found" })
         : errorHandler(error, req, res)
-    );
+    )
 };

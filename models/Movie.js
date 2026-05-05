@@ -36,9 +36,9 @@ const movieSchema = new mongoose.Schema ({
 		}
 	],
 	trailerUrl: {
-		  type: String,
-		  default: ""
-		}
+		type: String,
+		default:  ""
+	}
 })
 
 module.exports = mongoose.model('Movie', movieSchema);
